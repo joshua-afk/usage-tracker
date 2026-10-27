@@ -7,5 +7,6 @@ class UsageTrackerApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Scheduler.scheduleCollection(this)
+        Scheduler.scheduleSync(this)
     }
 }

@@ -8,8 +8,10 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.flow.Flow
 
 object Scheduler {
     private const val COLLECT_PERIODIC = "collect-periodic"
@@ -48,4 +50,8 @@ object Scheduler {
             .build()
         WorkManager.getInstance(context).enqueueUniqueWork(SYNC_NOW, ExistingWorkPolicy.REPLACE, request)
     }
+
+    /** State of the manual sync, so the UI can show "Syncing" and refresh when an attempt ends. */
+    fun syncNowWork(context: Context): Flow<List<WorkInfo>> =
+        WorkManager.getInstance(context).getWorkInfosForUniqueWorkFlow(SYNC_NOW)
 }

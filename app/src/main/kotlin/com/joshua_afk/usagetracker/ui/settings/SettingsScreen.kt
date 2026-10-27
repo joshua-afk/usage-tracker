@@ -28,6 +28,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.joshua_afk.usagetracker.ui.export.ExportSection
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -81,6 +82,8 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
             Text("Status: ${state.lastSyncStatus}", style = MaterialTheme.typography.bodyLarge)
         }
         Text("Waiting to sync: ${state.unsyncedCount} records", style = MaterialTheme.typography.bodyLarge)
+
+        ExportSection(Modifier.padding(top = 12.dp))
     }
 }
 

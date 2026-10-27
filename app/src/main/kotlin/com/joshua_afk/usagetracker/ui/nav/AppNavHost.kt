@@ -1,6 +1,5 @@
 package com.joshua_afk.usagetracker.ui.nav
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -15,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.joshua_afk.usagetracker.permission.UsageAccess
 import com.joshua_afk.usagetracker.ui.onboarding.PermissionScreen
+import com.joshua_afk.usagetracker.ui.today.TodayScreen
 
 object Routes {
     const val ONBOARDING = "onboarding"
@@ -40,9 +40,6 @@ fun AppNavHost() {
         composable(Routes.ONBOARDING) {
             PermissionScreen(onOpenSettings = { context.startActivity(UsageAccess.settingsIntent()) })
         }
-        composable(Routes.HOME) {
-            // Placeholder until the Today/History/Settings screens land.
-            Text("Usage access granted")
-        }
+        composable(Routes.HOME) { TodayScreen() }
     }
 }

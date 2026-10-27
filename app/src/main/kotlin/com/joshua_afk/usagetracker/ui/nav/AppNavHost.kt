@@ -24,17 +24,19 @@ import androidx.navigation.compose.rememberNavController
 import com.joshua_afk.usagetracker.permission.UsageAccess
 import com.joshua_afk.usagetracker.ui.history.HistoryScreen
 import com.joshua_afk.usagetracker.ui.onboarding.PermissionScreen
+import com.joshua_afk.usagetracker.ui.settings.SettingsScreen
 import com.joshua_afk.usagetracker.ui.today.TodayScreen
 
 object Routes {
     const val ONBOARDING = "onboarding"
     const val TODAY = "today"
     const val HISTORY = "history"
+    const val SETTINGS = "settings"
 }
 
 private data class Tab(val route: String, val label: String)
 
-private val tabs = listOf(Tab(Routes.TODAY, "Today"), Tab(Routes.HISTORY, "History"))
+private val tabs = listOf(Tab(Routes.TODAY, "Today"), Tab(Routes.HISTORY, "History"), Tab(Routes.SETTINGS, "Settings"))
 
 @Composable
 fun AppNavHost() {
@@ -78,6 +80,7 @@ fun AppNavHost() {
             }
             composable(Routes.TODAY) { TodayScreen() }
             composable(Routes.HISTORY) { HistoryScreen() }
+            composable(Routes.SETTINGS) { SettingsScreen() }
         }
     }
 }

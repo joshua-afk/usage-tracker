@@ -23,6 +23,10 @@ interface SessionDao {
     @Query("SELECT * FROM sessions WHERE startedAtMs < :toMs AND endedAtMs > :fromMs ORDER BY startedAtMs")
     suspend fun overlapping(fromMs: Long, toMs: Long): List<SessionEntity>
 
+    /** Sessions that start in [fromMs, toMs); unlike [overlapping], each session belongs to exactly one range. */
+    @Query("SELECT * FROM sessions WHERE startedAtMs >= :fromMs AND startedAtMs < :toMs ORDER BY startedAtMs")
+    suspend fun startingBetween(fromMs: Long, toMs: Long): List<SessionEntity>
+
     @Query("SELECT * FROM sessions ORDER BY startedAtMs")
     suspend fun all(): List<SessionEntity>
 }

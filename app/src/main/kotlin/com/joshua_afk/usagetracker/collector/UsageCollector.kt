@@ -44,7 +44,8 @@ class UsageCollector(
     }
 
     private companion object {
-        const val INITIAL_LOOKBACK_MS = 7L * 24 * 60 * 60 * 1000
+        /** First-run backfill. The system keeps events only for a limited time, so asking for more is harmless. */
+        const val INITIAL_LOOKBACK_MS = 30L * 24 * 60 * 60 * 1000
 
         /** Deterministic per record, so reprocessing an event window never creates a second id. */
         fun stableId(vararg parts: Any): String =
